@@ -37,6 +37,14 @@ client.connect(err => {
     })
   })
 
+  app.get('/addmin', (req, res) => {
+    volunteerCollection.find({})
+    .toArray( (err, documents) =>{
+      res.send(documents);
+    })
+  })
+
+
 });
 
 
