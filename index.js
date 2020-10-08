@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 client.connect(err => {
   const volunteerCollection = client.db("registrationForm").collection("registeredVolunteers");
-    
+  const eventsCollection =  client.db("registrationForm").collection("events");
   app.post('/addVolunteers', (req, res) => {
       const volunteerData = req.body;
       volunteerCollection.insertOne(volunteerData)
@@ -40,8 +40,15 @@ client.connect(err => {
   })
 
 
-  app.get('/admin', (req, res) => {
+  app.get('/showRegisters', (req, res) => {
     volunteerCollection.find({})
+    .toArray( (err, documents) =>{
+      res.send(documents);
+    })
+  })
+
+  app.get('/events', (req, res) => {
+    eventsCollection.find({})
     .toArray( (err, documents) =>{
       res.send(documents);
     })
