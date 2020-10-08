@@ -53,7 +53,12 @@ client.connect(err => {
       res.send(documents);
     })
   })
-
+  app.get('/eventDetails/:id', (req,res) =>{
+    eventsCollection.find({id: req.query.id})
+    .toArray((err, documents) =>{
+      res.send(documents)
+    })
+  })
 
 });
 
