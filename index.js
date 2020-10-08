@@ -54,7 +54,7 @@ client.connect(err => {
     })
   })
   app.get('/eventDetails/:id', (req,res) =>{
-    eventsCollection.find({id: req.query.id})
+    eventsCollection.find({id: req.params.id})
     .toArray((err, documents) =>{
       res.send(documents)
     })
