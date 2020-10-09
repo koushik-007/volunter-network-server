@@ -32,10 +32,9 @@ client.connect(err => {
   })
 
   app.delete('/delete/:id', (req, res) =>{
-    volunteerCollection.deleteOne({_id: ObjectId(req.params.id)})
+    volunteerCollection.deleteOne({_id: req.params.id})
     .then( result => {
-      res.send(result.deletedCount > 0);
-      res.redirect('/registeredUserInfo');
+      res.redirect('/');
     })
   })
 
